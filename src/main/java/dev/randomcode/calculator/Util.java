@@ -1,8 +1,6 @@
 package dev.randomcode.calculator;
 
-import java.lang.Double;
 import java.lang.Enum;
-import java.lang.Long;
 import java.lang.System;
 
 import java.util.InputMismatchException;
@@ -59,7 +57,6 @@ public class Util {
     // Display a menu of the values of any enum and let the user pick a valid constant, or null to go back
     public static <E extends Enum<E>> E displayMenu(Scanner scanner, Class<E> enumClass, String header) {
         int i = 1;
-        E option;
 
         System.out.print(header);
 

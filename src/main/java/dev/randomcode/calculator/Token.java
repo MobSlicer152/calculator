@@ -1,7 +1,5 @@
 package dev.randomcode.calculator;
 
-import java.lang.Double;
-
 public class Token {
     private final TokenType type;
     private final Object data;

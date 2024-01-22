@@ -30,8 +30,6 @@ public class AstGenerator {
         // Package, imports, and base class
         writer.println("package dev.randomcode.calculator;");
         writer.println();
-        writer.println("import dev.randomcode.calculator.Token;");
-        writer.println();
         writer.printf("abstract class %s {\n", baseName);
 
         // Visitor

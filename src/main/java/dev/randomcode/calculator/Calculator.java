@@ -1,7 +1,6 @@
 package dev.randomcode.calculator;
 
 import java.lang.System;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Calculator {
@@ -9,7 +8,7 @@ public class Calculator {
     private static boolean running;
     private static String lastOperation;
     private static double lastAnswer;
-    private static DegreesMode degreesMode;
+    private static AngleMode angleMode;
 
     private static void doSingleOperation() {
         Operator operator = Util.displayMenu(scanner, Operator.class, 
@@ -33,7 +32,7 @@ public class Calculator {
         }
 
         // Slightly faster and cleaner than evaluating this twice in the if statements
-        boolean convertDegrees = function.isTrig() && degreesMode == DegreesMode.DEGREES && function.givesAngle();
+        boolean convertDegrees = function.isTrig() && angleMode == AngleMode.DEGREES && function.givesAngle();
 
         // The implementations all work in radians, so they need to be converted to and from
         Double[] arguments = function.getInputs(scanner);
@@ -53,7 +52,6 @@ public class Calculator {
         System.out.print(
             " ---<[ EXPRESSION ]>---\n" +
             "Parentheses and all operators and functions supported.\n" +
-            //"The parser works better when spaces are used\n" +
             "------------------------\n" +
             "Enter an expression:\n");
         String input = scanner.nextLine();
@@ -63,22 +61,17 @@ public class Calculator {
         lastOperation = input;
     }
 
-    private static void doReversePolish() {
-        System.out.print(
-            " ---<[ RPN ]>---\n" +
-            "All operators and functions supported.\n" +
-            //"The parser works better when spaces are used\n" +
-            "-----------------\n" +
-            "Enter an expression in reverse Polish notation:\n");
-        String expression = scanner.nextLine();
-        lastOperation = expression;
+    private static void toggleDegrees() {
+        angleMode = Util.displayMenu(scanner, AngleMode.class,
+        " ---<[ ANGLE MODE ]>---\n" +
+        "------------------------\n");
     }
 
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
 
         lastAnswer = 0;
-        degreesMode = DegreesMode.DEGREES;
+        angleMode = AngleMode.DEGREES;
 
         running = true;
         while (running) {
@@ -91,7 +84,7 @@ public class Calculator {
                 "------------------------\n",
                 lastOperation,
                 lastAnswer,
-                degreesMode
+                angleMode
             ));
 
             if (option == null) {
@@ -109,8 +102,8 @@ public class Calculator {
             case EXPRESSION:
                 doExpression();
                 break;
-            case REVERSE_POLISH:
-                //doReversePolish();
+            case TOGGLE_ANGLE_MODE:
+                toggleDegrees();
                 break;
             }
         }

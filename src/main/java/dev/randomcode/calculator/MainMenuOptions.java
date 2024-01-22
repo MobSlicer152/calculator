@@ -4,8 +4,7 @@ public enum MainMenuOptions {
     SINGLE_OPERATION("Single operation"),
     FUNCTION("Function"),
     EXPRESSION("Mathematical expression (infix notation)"),
-    REVERSE_POLISH("Reverse Polish notation"),
-    TOGGLE_DEGREES("Set degrees or radians");
+    TOGGLE_ANGLE_MODE("Set degrees or radians");
 
     private String text;
     private MainMenuOptions(String text) {

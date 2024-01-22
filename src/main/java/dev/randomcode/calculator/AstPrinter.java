@@ -22,7 +22,7 @@ public class AstPrinter implements Expression.Visitor<String> {
 
     @Override
     public String visitGroupingExpression(Grouping expression) {
-        return parenthesize("group", expression);
+        return parenthesize("group", expression.expression);
     }
 
     @Override

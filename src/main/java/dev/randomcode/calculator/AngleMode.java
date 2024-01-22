@@ -1,11 +1,11 @@
 package dev.randomcode.calculator;
 
-public enum DegreesMode {
+public enum AngleMode {
     DEGREES("Degrees"),
     RADIANS("Radians");
 
     private String text;
-    private DegreesMode(String text) {
+    private AngleMode(String text) {
         this.text = text;
     }
 
