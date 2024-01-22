@@ -26,9 +26,22 @@ public class Parser {
 
     // + and -
     private Expression term() {
-        Expression expression = factor();
+        Expression expression = exponent();
 
         while (match(Token.ADD, Token.SUBTRACT)) {
+            Token operator = previous();
+            Expression right = exponent();
+            expression = new Expression.Binary(expression, operator, right);
+        }
+
+        return expression;
+    }
+
+    // ^
+    private Expression exponent() {
+        Expression expression = factor();
+
+        while (match(Token.EXPONENT)) {
             Token operator = previous();
             Expression right = factor();
             expression = new Expression.Binary(expression, operator, right);

@@ -76,6 +76,26 @@ public enum MathFunction {
                 assert (arguments.length == 1);
                 return Math.atan(arguments[0]);
             }),
+    LOGNATURAL("Logarithm, base e (ln)", "ln", 1, false, false, false,
+            (Scanner scanner) -> {
+                return new Double[] {
+                        Util.getValidDouble(scanner, "Enter the number: ")
+                };
+            },
+            (Double[] arguments) -> {
+                assert (arguments.length == 1);
+                return Math.log(arguments[0]);
+            }),
+    LOG10("Logarithm, base 10 (log10)", "log10", 1, false, false, false,
+            (Scanner scanner) -> {
+                return new Double[] {
+                        Util.getValidDouble(scanner, "Enter the number: ")
+                };
+            },
+            (Double[] arguments) -> {
+                assert (arguments.length == 1);
+                return Math.log10(arguments[0]);
+            }),
     // These two are here for ease of both inputting and parsing them
     SQUARE_ROOT("Square root (sqrt)", "sqrt", 1, false, false, false,
             (Scanner scanner) -> {
@@ -112,7 +132,8 @@ public enum MathFunction {
     private Function<Scanner, Double[]> getInputsFunction;
     private Function<Double[], Double> executeFunction;
 
-    private MathFunction(String text, String token, int argumentCount, boolean isTrig, boolean takesAngle, boolean givesAngle,
+    private MathFunction(String text, String token, int argumentCount, boolean isTrig, boolean takesAngle,
+            boolean givesAngle,
             Function<Scanner, Double[]> getInputsFunction, Function<Double[], Double> executeFunction) {
         this.text = text;
         this.token = token;
