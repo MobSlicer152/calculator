@@ -56,7 +56,7 @@ public class Calculator {
             "Enter an expression:\n");
         String input = scanner.nextLine();
         Expression expression = TokenScanner.scanAndParse(input);
-        System.out.printf("Expression %s produces AST %s", input, (new AstPrinter()).print(expression));
+        System.out.printf("Expression %s produces AST %s\n", input, (new AstPrinter()).print(expression));
         lastAnswer = (new Evaluator()).evaluate(expression);
         lastOperation = input;
     }
