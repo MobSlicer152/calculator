@@ -22,7 +22,7 @@ public class Util {
             try {
                 result = scanner.nextInt();
             } catch (InputMismatchException e) {
-                result = 0;
+                result = Integer.MAX_VALUE;
                 scanner.nextLine();
                 continue;
             }
