@@ -47,7 +47,7 @@ public class AstPrinter implements Expression.Visitor<String> {
 
         builder.append("(").append(name);
         for (Expression expression : expressions) {
-            builder.append(" ").append(expression.accept(this));
+            builder.append(" ").append(expression != null ? expression.accept(this) : "(null)");
         }
         builder.append(")");
 
