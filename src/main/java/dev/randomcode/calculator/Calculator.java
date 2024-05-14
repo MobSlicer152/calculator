@@ -1,6 +1,7 @@
 package dev.randomcode.calculator;
 
 import java.lang.System;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Calculator {
@@ -32,17 +33,18 @@ public class Calculator {
         }
 
         // Slightly faster and cleaner than evaluating this twice in the if statements
-        boolean convertDegrees = function.isTrig() && angleMode == AngleMode.DEGREES && function.givesAngle();
+        boolean convertDegrees = function.isTrig() && angleMode == AngleMode.DEGREES;
 
         // The implementations all work in radians, so they need to be converted to and from
         Double[] arguments = function.getInputs(scanner);
-        if (convertDegrees) {
+        if (convertDegrees && function.takesAngle()) {
             for (int i = 0; i < arguments.length; i++) {
                 arguments[i] = Math.toRadians(arguments[i]);
             }
         }
+        
         lastAnswer = function.execute(arguments);
-        if (convertDegrees) {
+        if (convertDegrees && function.givesAngle()) {
             lastAnswer = Math.toDegrees(lastAnswer);
         }
         lastOperation = function.toString();

@@ -1,5 +1,6 @@
 package dev.randomcode.calculator;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.Scanner;
@@ -150,6 +151,7 @@ public enum MathFunction {
     }
 
     public double execute(Double[] operands) {
+        ArrayList<Double> processed = new ArrayList<>();
         return executeFunction.apply(operands);
     }
 
